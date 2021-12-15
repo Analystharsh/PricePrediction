@@ -59,7 +59,7 @@ warnings.filterwarnings("ignore",category=PendingDeprecationWarning)
 
 app = Flask(__name__)
 
-model = load_model('deployment_28042020')
+model = load_model('finalized_model.sav')
 cols = ['District', 'rooms', 'Mosques', 'Hotels', 'HealthCenters', 'Cafes', 'BusStops', 'Pharmacy', 'Government_Department', 'Refreshment_Fastfood', 'PetrolStation', 'PublicParks', 'CulturalFacility']
 
 @app.route('/')
