@@ -1,8 +1,61 @@
-from flask import Flask,request, url_for, redirect, render_template, jsonify
-from pycaret.regression import *
+import requests
+from flask import Flask, render_template, redirect, url_for, request,jsonify
+from werkzeug.wrappers import Request, Response
+
+import json
+
+# for data loading and transformation
+import numpy as np 
 import pandas as pd
+
+# for statistics output
+from scipy import stats
+from scipy.stats import randint
+
+# for data preparation and preprocessing for model
+from sklearn.model_selection import train_test_split
+from sklearn import preprocessing
+from sklearn.datasets import make_classification
+from sklearn.preprocessing import binarize, LabelEncoder, MinMaxScaler
+
+# models
+# Logistic Regression
+from sklearn.linear_model import LogisticRegression
+# Tree Classifier
+from sklearn.tree import DecisionTreeClassifier
+# Random Forest
+from sklearn.ensemble import RandomForestClassifier, ExtraTreesClassifier
+from sklearn.model_selection import RandomizedSearchCV
+# Bagging
+from sklearn.ensemble import BaggingClassifier, AdaBoostClassifier
+# KNN
+from sklearn.neighbors import KNeighborsClassifier
+# Naive Bayes
+from sklearn.naive_bayes import GaussianNB 
+# Stacking
+from mlxtend.classifier import StackingClassifier
+
+# model evaluation and validation 
+from sklearn import metrics
+from sklearn.metrics import accuracy_score, mean_squared_error, precision_recall_curve
+from sklearn.model_selection import cross_val_score
+
+# for db connection
+import sqlite3
+db_filename="database.db"
+
 import pickle
-import numpy as np
+model_filename="models/model.pkl"
+
+# to bypass warnings in the jupyter notebook
+import warnings
+from pandas.core.common import SettingWithCopyWarning
+warnings.simplefilter(action="ignore", category=SettingWithCopyWarning)
+
+warnings.filterwarnings("ignore",category=UserWarning)
+warnings.filterwarnings("ignore",category=DeprecationWarning)
+warnings.filterwarnings("ignore",category=FutureWarning)
+warnings.filterwarnings("ignore",category=PendingDeprecationWarning)
 
 app = Flask(__name__)
 
@@ -32,3 +85,5 @@ def predict_api():
 
 if __name__ == '__main__':
     app.run(debug=True)
+    rom werkzeug.serving import run_simple
+	run_simple("localhost", 5000, app)
