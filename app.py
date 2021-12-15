@@ -45,7 +45,7 @@ import sqlite3
 db_filename="database.db"
 
 import pickle
-model_filename="models/model.pkl"
+model_filename="finalized_model.sav"
 
 # to bypass warnings in the jupyter notebook
 import warnings
